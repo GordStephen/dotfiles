@@ -46,6 +46,8 @@ if has("autocmd")
 
     autocmd vimenter * if !argc() | NERDTree | endif
     autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+    
+    au BufRead,BufNewFile *.json set filetype=json
 
   augroup END
 
@@ -55,4 +57,4 @@ else
 
 endif " has("autocmd")
 
-
+let g:vim_json_syntax_conceal = 0
