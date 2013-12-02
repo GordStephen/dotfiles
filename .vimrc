@@ -18,7 +18,6 @@ if has('mouse')
 endif
 
 set t_Co=256
-color xoria256
 syntax on
 set hlsearch
 set background=dark
@@ -58,3 +57,6 @@ else
 endif " has("autocmd")
 
 let g:vim_json_syntax_conceal = 0
+
+color xoria256
+
