@@ -18,6 +18,7 @@ if has('mouse')
 endif
 
 set t_Co=256
+color xoria256
 syntax on
 set hlsearch
 set background=dark
@@ -45,6 +46,8 @@ if has("autocmd")
 
     autocmd vimenter * if !argc() | NERDTree | endif
     autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+    
+    au BufRead,BufNewFile *.json set filetype=json
 
   augroup END
 
@@ -54,5 +57,4 @@ else
 
 endif " has("autocmd")
 
-color xoria256
-
+let g:vim_json_syntax_conceal = 0

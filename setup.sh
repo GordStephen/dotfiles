@@ -8,7 +8,7 @@
 ########## Variables
 
 dir=$(readlink -f $(dirname ${BASH_SOURCE[0]})) # dotfiles directory
-olddir=~/dotfiles_old # old dotfiles backup directory
+olddir=~/.dotfiles.old # old dotfiles backup directory
 files=".vimrc .vim .screenrc" # list of files/folders to symlink in homedir
 
 ##########
