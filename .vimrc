@@ -1,19 +1,21 @@
 execute pathogen#infect()
 
 " Tabs and Indentations
-set ts=4 sw=4 sts=4 expandtab
+set ts=2 sw=2 sts=2 expandtab
 set number
 
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
 
-set backupdir=~/tmp
+silent execute '!mkdir ~/.vimtmp 2>/dev/null'
+set backupdir=~/.vimtmp//
+set directory=~/.vimtmp//
 set history=50		" keep 50 lines of command line history
 set ruler		" show the cursor position all the time
 set showcmd		" display incomplete commands
 set incsearch		" do incremental searching
 
-if has('mouse')
+if has("mouse")
   set mouse=a
 endif
 
