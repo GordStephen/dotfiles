@@ -28,3 +28,11 @@ plugins=(colorize colored-man git command-not-found copyfile npm nvm tmux vagran
 . $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
+
+export TERM=xterm-256color
+[ -n "$TMUX" ] && export TERM=screen-256color
+
+export NODE_PATH=/usr/local/lib/node_modules
+
+export LC_ALL=en_US.utf-8
+export LANG=en_US.utf-8
