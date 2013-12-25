@@ -1,4 +1,5 @@
 execute pathogen#infect()
+set encoding=utf-8
 
 " Tabs and Indentations
 set ts=2 sw=2 sts=2 expandtab
@@ -14,10 +15,6 @@ set history=50		" keep 50 lines of command line history
 set ruler		" show the cursor position all the time
 set showcmd		" display incomplete commands
 set incsearch		" do incremental searching
-
-if has("mouse")
-  set mouse=a
-endif
 
 set t_Co=256
 syntax on
