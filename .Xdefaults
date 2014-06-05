@@ -1,0 +1,52 @@
+# scrollback buffer lines - 65535 is max on most machines (64 is default)
+##URxvt*saveLines: 12000
+
+# font color (default is black)
+URxvt*foreground: #BBB
+
+# background color (prior to tinting) (default is white)
+URxvt*background: #040404
+
+# Xft: DejaVu fonts
+#  Fedora/debian packages: dejavu-sans-mono-fonts/ttf-dejavu 
+URxvt*font: xft:Droid Sans Mono:regular:pixelsize=12:antialias=true:hinting=true
+URxvt*boldFont: xft:Droid Sans Mono:bold:pixelsize=12:antialias=true:hinting=true
+URxvt.letterSpace: -2
+
+# Replace blue folder colors with a lighter shade for clarity. To
+#  set colored folders and files within urxvt, xterm, and aterm, add
+#  the following line to your ~/.bashrc ($HOME/.bashrc) file under
+#  the heading "# User specific aliases and functions":
+#   alias ls="ls -h --color=auto"
+URxvt*color4: RoyalBlue
+URxvt*color12: RoyalBlue
+
+! black
+URxvt*color0  : #2E3436
+URxvt*color8  : #555753
+! red
+URxvt*color1  : #CC0000
+URxvt*color9  : #EF2929
+! green
+URxvt*color2  : #4E9A06
+URxvt*color10 : #8AE234
+! yellow
+URxvt*color3  : #C4A000
+URxvt*color11 : #FCE94F
+! blue
+URxvt*color4  : #3465A4
+URxvt*color12 : #729FCF
+! magenta
+URxvt*color5  : #75507B
+URxvt*color13 : #AD7FA8
+! cyan
+URxvt*color6  : #06989A
+URxvt*color14 : #34E2E2
+! white
+URxvt*color7  : #D3D7CF
+URxvt*color15 : #EEEEEC
+
+
+# scrollbar - true (default) or false
+URxvt*scrollBar: false 
+

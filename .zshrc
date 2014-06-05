@@ -32,7 +32,9 @@ plugins=(colorize colored-man git command-not-found copyfile npm nvm tmux vagran
 export TERM=xterm-256color
 [ -n "$TMUX" ] && export TERM=screen-256color
 
-export NODE_PATH=/usr/local/lib/node_modules
+export PATH=$PATH:/opt/node/bin:/usr/local/lib/node_modules/npm/node_modules
+export NODE_PATH=$NODE_PATH:/usr/local/lib/node_modules:/usr/local/lib/node_modules/npm/node_modules
+export PATH=$PATH:/home/gord/.sbt/bin
 
-export LC_ALL=en_US.utf-8
-export LANG=en_US.utf-8
+export LC_ALL=en_US.utf8
+export LANG=en_US.utf8
