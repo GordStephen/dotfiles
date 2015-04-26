@@ -35,6 +35,7 @@ export TERM=xterm-256color
 export PATH=$PATH:/opt/node/bin:/usr/local/lib/node_modules/npm/node_modules
 export NODE_PATH=$NODE_PATH:/usr/local/lib/node_modules:/usr/local/lib/node_modules/npm/node_modules
 export PATH=$PATH:/home/gord/.sbt/bin
-
-export LC_ALL=en_US.utf8
-export LANG=en_US.utf8
+export PATH="`ruby -e 'puts Gem.user_dir'`/bin:$PATH"
+export EDITOR=/usr/bin/vim
+#export LC_ALL=en_US.utf8
+#export LANG=en_US.utf8

@@ -1,6 +1,8 @@
 execute pathogen#infect()
 set encoding=utf-8
 
+set noerrorbells visualbell t_vb=
+
 " Tabs and Indentations
 set ts=2 sw=2 sts=2 expandtab
 set number
@@ -18,6 +20,7 @@ set incsearch		" do incremental searching
 
 set t_Co=256
 syntax on
+filetype on
 set hlsearch
 set background=dark
 
@@ -45,6 +48,7 @@ if has("autocmd")
     autocmd vimenter * if !argc() | NERDTree | endif
     autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
     
+    au BufRead,BufNewFile *.sc set filetype=scala
     au BufRead,BufNewFile *.json set filetype=json
 
   augroup END
@@ -56,6 +60,7 @@ else
 endif " has("autocmd")
 
 let g:vim_json_syntax_conceal = 0
+let b:did_llpplugin = 1
 
 color xoria256
 
