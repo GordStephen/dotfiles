@@ -23,8 +23,11 @@ floating_modifier $mod
 # start a terminal
 bindsym $mod+Return exec i3-sensible-terminal
 
-# start a browser 
+# start a web browser
 bindsym $mod+b exec chromium
+
+# start a file browser
+bindsym $mod+n exec urxvt -e ranger
 
 # kill focused window
 bindsym $mod+Shift+Q kill
@@ -159,6 +162,8 @@ bindsym $mod+r mode "resize"
 bar {
         position top
         status_command i3status --config ~/.i3/i3status.conf
+        tray_output none
 }
 
 exec --no-startup-id nm-applet
+exec rescuetime
