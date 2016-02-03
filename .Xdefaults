@@ -6,8 +6,8 @@ URxvt.background: #040404
 
 !! I would rather use Source Code Pro, but it lacks certain Unicode glyphs 
 !! and I have issues getting font list fallbacks working...
-URxvt.font: xft:Droid Sans Mono Slashed:regular:pixelsize=12:antialias=true:hinting=true
-URxvt.boldFont: xft:Droid Sans Mono Slashed:bold:pixelsize=12:antialias=true:hinting=true
+URxvt.font: xft:Droid Sans Mono Slashed:regular:pixelsize=12:antialias=true:hinting=true,xft:Symbola
+URxvt.boldFont: xft:Droid Sans Mono Slashed:bold:pixelsize=12:antialias=true:hinting=true,xft:Symbola
 !URxvt.font: xft:Source Code Pro:regular:pixelsize=12:antialias=true:hinting=true, \
 !            xft:Droid Sans Mono:regular:pixelsize=12:antialias=true:hinting=true
 !URxvt.boldFont: xft:Source Code Pro:bold:pixelsize=12:antialias=true:hinting=true, \
