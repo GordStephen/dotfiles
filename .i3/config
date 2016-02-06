@@ -29,6 +29,9 @@ bindsym $mod+b exec chromium
 # start a file browser
 bindsym $mod+n exec urxvtc -e ranger
 
+# start emacs
+bindsym $mod+m exec emacsclient -c
+
 # kill focused window
 bindsym $mod+Shift+Q kill
 

@@ -5,7 +5,7 @@ set noerrorbells visualbell t_vb=
 
 " Tabs and Indentations
 set ts=2 sw=2 sts=2 expandtab
-set number
+set relativenumber
 
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
