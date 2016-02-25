@@ -33,7 +33,7 @@ plugins=(colorize colored-man git command-not-found copyfile npm nvm vagrant his
 export TERM=xterm-256color
 [ -n "$TMUX" ] && export TERM=screen-256color
 
-export PATH=$PATH:/opt/node/bin:/usr/local/lib/node_modules/npm/node_modules:~/.cabal/bin
+export PATH=$PATH:/opt/node/bin:/usr/local/lib/node_modules/npm/node_modules:~/.cabal/bin:~/.pdsite/bin
 export NODE_PATH=$NODE_PATH:/usr/local/lib/node_modules:/usr/local/lib/node_modules/npm/node_modules
 export PATH=$PATH:/home/gord/.sbt/bin
 export PATH="`ruby -e 'puts Gem.user_dir'`/bin:$PATH"
