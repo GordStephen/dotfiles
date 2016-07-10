@@ -37,6 +37,7 @@ Missing packages are installed automatically."
     evil-nerd-commenter
     markdown-mode
     julia-mode
+    elm-mode
 ))
 
 ;; Configure general interface
@@ -74,7 +75,7 @@ Missing packages are installed automatically."
 (global-set-key (kbd "<f2>") 'dired)
 
 ;;; Set directory for backups and autosaves
-(setq temporary-file-directory "~/tmp")
+(setq temporary-file-directory "~/tmp/")
 (setq backup-directory-alist
           `((".*" . ,temporary-file-directory)))
 (setq auto-save-file-name-transforms
@@ -93,6 +94,9 @@ Missing packages are installed automatically."
     "Major mode for editing Markdown files" t)
 (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
+
+;;; Elm mode
+(require 'elm-mode)
 
 ;; evil-mode
 
@@ -153,3 +157,4 @@ Missing packages are installed automatically."
 (evil-define-key 'normal dired-mode-map "N" 'evil-search-previous)
 (evil-define-key 'normal dired-mode-map "q" 'kill-this-buffer)
 
+(global-visual-line-mode t)

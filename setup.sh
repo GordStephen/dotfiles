@@ -9,7 +9,7 @@
 
 dir=$(readlink -f $(dirname ${BASH_SOURCE[0]})) # dotfiles directory
 olddir=~/.dotfiles.old # old dotfiles backup directory
-files=".Xdefaults .zshrc .tmux.conf .vim .vimrc .i3 .emacs" # list of files/folders to symlink in homedir
+files=".Xdefaults .xinitrc .zshrc .vim .vimrc .i3 .emacs" # list of files/folders to symlink in homedir
 
 ##########
 
