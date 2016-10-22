@@ -38,6 +38,7 @@ Missing packages are installed automatically."
     markdown-mode
     julia-mode
     elm-mode
+    haskell-mode
 ))
 
 ;; Configure general interface
@@ -115,11 +116,12 @@ Missing packages are installed automatically."
 (define-key evil-normal-state-map (kbd "SPC SPC") 'helm-M-x)
 (define-key evil-visual-state-map (kbd "SPC SPC") 'helm-M-x)
 
-;;; Window switching
-(define-key evil-normal-state-map (kbd "C-h") 'evil-window-left)
-(define-key evil-normal-state-map (kbd "C-j") 'evil-window-down)
-(define-key evil-normal-state-map (kbd "C-k") 'evil-window-up)
-(define-key evil-normal-state-map (kbd "C-l") 'evil-window-right)
+;;; Open splits in frames instead of windows
+(evil-define-command evil-other-frame (&optional file)
+  (interactive "<f>")
+  (find-file-other-frame file))
+(evil-ex-define-cmd "split" 'evil-other-frame)
+(evil-ex-define-cmd "vsplit" 'evil-other-frame)
 
 ;;; Keybindings for ibuffer
 (eval-after-load 'ibuffer

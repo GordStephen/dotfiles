@@ -26,7 +26,7 @@ bindsym $mod+Return exec urxvtc
 
 # start a web browser
 bindsym $mod+b exec qutebrowser
-bindsym $mod+Shift+b exec firefox
+bindsym $mod+Shift+b exec --no-startup-id chromium
 
 # start a file browser
 bindsym $mod+n exec urxvtc -e ranger
