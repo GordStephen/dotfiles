@@ -24,15 +24,20 @@ floating_modifier $mod
 # start a terminal
 bindsym $mod+Return exec urxvtc
 
+# start feed reader
+bindsym $mod+n exec urxvtc -e newsbeuter
+bindsym $mod+Shift+n exec urxvtc -e podbeuter
+
 # start a web browser
-bindsym $mod+b exec qutebrowser
+# bindsym $mod+b exec qutebrowser
+bindsym $mod+b exec urxvtc -e w3m http://www.duckduckgo.com
 bindsym $mod+Shift+b exec --no-startup-id chromium
 
-# start a file browser
-bindsym $mod+n exec urxvtc -e ranger
+# start file browser
+bindsym $mod+o exec urxvtc -e ranger
 
-# start a system monitor
-bindsym $mod+t exec urxvtc -e top
+# start system monitor
+bindsym $mod+p exec urxvtc -e top
 
 # start emacs
 bindsym $mod+m exec --no-startup-id emacsclient -c

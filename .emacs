@@ -10,11 +10,8 @@
 
 ;;;Load package manager and MELPA repository
 (require 'package)
-(add-to-list
-    'package-archives
-    '("melpa" . "http://melpa.milkbox.net/packages/")
-    t
-)
+(add-to-list 'package-archives
+    '("MELPA" . "https://melpa.org/packages/") t)
 (package-initialize)
 
 ;;; Set up package autoloading - adapted from prelude by @bbatsov
@@ -25,6 +22,7 @@
 (defun require-packages (packages)
     "Ensure PACKAGES are installed.
 Missing packages are installed automatically."
+    (package-refresh-contents)
     (mapc #'require-package packages))
 
 ;;; Declare required packages
@@ -35,6 +33,7 @@ Missing packages are installed automatically."
     evil
     evil-surround
     evil-nerd-commenter
+    flycheck
     markdown-mode
     julia-mode
     elm-mode
@@ -81,6 +80,9 @@ Missing packages are installed automatically."
           `((".*" . ,temporary-file-directory)))
 (setq auto-save-file-name-transforms
           `((".*" ,temporary-file-directory t)))
+
+;; Flycheck
+(add-hook 'after-init-hook #'global-flycheck-mode)
 
 ;; Configure specific modes
 

@@ -11,6 +11,7 @@ if [[ -s ${ZDOTDIR:-${HOME}}/.zim/init.zsh ]]; then
   source ${ZDOTDIR:-${HOME}}/.zim/init.zsh
 fi
 
+export PATH=$PATH:~/.pdsite/bin
 # Quick-and-dirty csv viewer
 csview()
 {
