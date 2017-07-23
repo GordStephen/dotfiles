@@ -1,10 +1,16 @@
+;;; .emacs --- Gord's Emacs config
+
+;;; Commentary:
 ;; Featuring evil-mode keybindings from http://nathantypanski.com/blog/2014-08-03-a-vim-like-emacs-config.html
+
+;;; Code:
 
 ;; Disable GUI elements
 (setq inhibit-startup-screen t)
 (menu-bar-mode -1)
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
+(fringe-mode 0)
 
 ;; Package setup
 
@@ -28,7 +34,9 @@ Missing packages are installed automatically."
 ;;; Declare required packages
 (require-packages '(
     base16-theme
+    telephone-line
     linum-relative
+    ethan-wspace
     helm
     evil
     evil-surround
@@ -36,8 +44,8 @@ Missing packages are installed automatically."
     flycheck
     markdown-mode
     julia-mode
-    elm-mode
     haskell-mode
+    rust-mode
 ))
 
 ;; Configure general interface
@@ -50,6 +58,11 @@ Missing packages are installed automatically."
 (require 'linum-relative)
 (setq linum-relative-current-symbol "")
 (linum-relative-global-mode)
+
+;;; Enable whitespace highlighting
+(require 'ethan-wspace)
+(setq mode-require-final-newline nil)
+(global-ethan-wspace-mode 1)
 
 ;;; Enable show matching brackets
 (show-paren-mode 1)
@@ -98,9 +111,6 @@ Missing packages are installed automatically."
 (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 
-;;; Elm mode
-(require 'elm-mode)
-
 ;; evil-mode
 
 ;;; Activate evil-mode
@@ -113,6 +123,45 @@ Missing packages are installed automatically."
 
 ;;; Activate comment vi operator
 (evilnc-default-hotkeys)
+
+;; telephone-line setup
+(require 'telephone-line-config)
+(require 'telephone-line-utils)
+
+(telephone-line-defsegment* gs-telephone-line-buffer-segment ()
+  `(""
+    mode-line-mule-info
+    mode-line-modified
+    mode-line-remote
+    mode-line-frame-identification
+    ,(telephone-line-raw mode-line-buffer-identification t)))
+
+(defface gs-telephone-line-accent-active
+  '((t (:foreground "#ffffff" :background "#545454" :inherit mode-line)))
+  "Accent face for mode-line."
+  :group 'telephone-line)
+
+(defface gs-telephone-line-accent-inactive
+  '((t (:foreground "#a8a8a8" :background "#383838" :inherit mode-line-inactive)))
+  "Accent face for inactive mode-line."
+  :group 'telephone-line)
+
+(setq telephone-line-faces
+      '((accent . (gs-telephone-line-accent-active . gs-telephone-line-accent-inactive))
+        (nil . (mode-line . mode-line-inactive))))
+
+(setq telephone-line-lhs
+      '((accent . (gs-telephone-line-buffer-segment))
+	(nil    . (telephone-line-vc-segment
+		   telephone-line-process-segment))
+	  ))
+(setq telephone-line-rhs
+      '((nil    . (telephone-line-misc-info-segment
+		   telephone-line-major-mode-segment))
+	(accent . (telephone-line-airline-position-segment))
+	))
+
+(telephone-line-mode t)
 
 ;;; M-x remap
 (define-key evil-normal-state-map (kbd "SPC SPC") 'helm-M-x)
@@ -143,7 +192,7 @@ Missing packages are installed automatically."
 
 ;;; Keybindings for dired
 (defun my-dired-up-directory ()
-  "Take dired up one directory, but behave like dired-find-alternate-file"
+  "Take dired up one directory, but behave like dired-find-alternate-file."
   (interactive)
   (let ((old (current-buffer)))
     (dired-up-directory)
@@ -162,3 +211,18 @@ Missing packages are installed automatically."
 (evil-define-key 'normal dired-mode-map "q" 'kill-this-buffer)
 
 (global-visual-line-mode t)
+(put 'downcase-region 'disabled nil)
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   (quote
+    (ethan-wspace ethan-whitespace telephone-line rust-mode markdown-mode linum-relative julia-mode helm haskell-mode flycheck evil-surround evil-nerd-commenter evil elm-mode base16-theme))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )

@@ -4,6 +4,10 @@
 URxvt.foreground: #BBB
 URxvt.background: #040404
 
+! Xft.hintstyle: hintslight
+! Xft.rgba: rgb
+URxvt.letterSpace: -1
+
 !! I would rather use Source Code Pro, but it lacks certain Unicode glyphs 
 !! and I have issues getting font list fallbacks working...
 URxvt.font: xft:Droid Sans Mono Slashed:regular:pixelsize=12:antialias=true:hinting=true,xft:Symbola
@@ -14,8 +18,6 @@ URxvt.boldFont: xft:Droid Sans Mono Slashed:bold:pixelsize=12:antialias=true:hin
 !                xft:Droid Sans Mono:bold:pixelsize=12:antialias=true:hinting=true
 !URxvt.italicFont: 
 !URxvt.bolditalicFont: 
-
-URxvt.letterSpace: -2
 
 ! black
 URxvt.color0  : #2E3436
