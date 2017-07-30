@@ -122,10 +122,6 @@ Missing packages are installed automatically."
 (telephone-line-mode t)
 
 
-;; Magit
-(global-set-key (kbd "C-x g") 'magit-status)
-
-
 ;;; Helm
 (require 'helm-config)
 (helm-mode 1)
@@ -179,6 +175,7 @@ Missing packages are installed automatically."
 (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 
+;;; Magit
 (require 'magit)
 
 ;; evil-mode
@@ -193,7 +190,8 @@ Missing packages are installed automatically."
  "q" 'kill-buffer-and-window
  "b" 'helm-mini
  "e" 'helm-find-files
- ";" 'helm-M-x
+ "x" 'helm-M-x
+ "g" 'magit-status
 )
 ;;; Activate evil-mode
 (require 'evil)
