@@ -38,12 +38,13 @@ Missing packages are installed automatically."
     linum-relative
     ethan-wspace
     helm
+    magit
     evil
     evil-leader
     evil-surround
     evil-nerd-commenter
+    evil-magit
     flycheck
-    magit
     markdown-mode
     julia-mode
     haskell-mode
@@ -178,6 +179,8 @@ Missing packages are installed automatically."
 (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 
+(require 'magit)
+
 ;; evil-mode
 
 ;;; Activate evil-leader
@@ -195,6 +198,8 @@ Missing packages are installed automatically."
 ;;; Activate evil-mode
 (require 'evil)
 (evil-mode t)
+
+(require 'evil-magit)
 
 ;;; Activate surround vi operator
 (require 'evil-surround)
@@ -249,7 +254,7 @@ Missing packages are installed automatically."
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (magit ebib auctex ethan-wspace ethan-whitespace telephone-line rust-mode markdown-mode linum-relative julia-mode helm haskell-mode flycheck evil-surround evil-nerd-commenter evil elm-mode base16-theme))))
+    (evil-magit magit ebib auctex ethan-wspace ethan-whitespace telephone-line rust-mode markdown-mode linum-relative julia-mode helm haskell-mode flycheck evil-surround evil-nerd-commenter evil elm-mode base16-theme))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
