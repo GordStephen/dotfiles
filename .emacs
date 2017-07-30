@@ -39,13 +39,17 @@ Missing packages are installed automatically."
     ethan-wspace
     helm
     evil
+    evil-leader
     evil-surround
     evil-nerd-commenter
     flycheck
+    magit
     markdown-mode
     julia-mode
     haskell-mode
     rust-mode
+    auctex
+    ebib
 ))
 
 ;; Configure general interface
@@ -67,64 +71,17 @@ Missing packages are installed automatically."
 ;;; Enable show matching brackets
 (show-paren-mode 1)
 
-;;; Helm
-(require 'helm-config)
-(helm-mode 1)
-(setq helm-autoresize-max-height 20)
-(helm-autoresize-mode t)
-(global-set-key (kbd "M-x") 'helm-M-x)
-(global-set-key (kbd "C-x C-f") 'helm-find-files)
-(global-set-key (kbd "C-x b") 'helm-mini)
-(setq helm-buffers-fuzzy-matching t
-      helm-buffers-fuzzy-match    t)
-(global-set-key (kbd "<f1>") 'helm-apropos)
-(setq helm-apropos-fuzzy-match t)
+;;; Window management
+(global-set-key (kbd "M--") 'split-window-below)
+(global-set-key (kbd "M-\\") 'split-window-right)
+(global-set-key (kbd "M-DEL") 'delete-window)
+(global-set-key (kbd "M-0") 'delete-other-windows)
+(global-set-key (kbd "M-h") 'windmove-left)
+(global-set-key (kbd "M-j") 'windmove-down)
+(global-set-key (kbd "M-k") 'windmove-up)
+(global-set-key (kbd "M-l") 'windmove-right)
 
-;;; Dired
-(require 'dired-x)
-(setq dired-omit-files "^\\..*$")
-(add-hook 'dired-mode-hook (lambda () (dired-omit-mode 1)))
-(put 'dired-find-alternate-file 'disabled nil)
-(global-set-key (kbd "<f2>") 'dired)
-
-;;; Set directory for backups and autosaves
-(setq temporary-file-directory "~/tmp/")
-(setq backup-directory-alist
-          `((".*" . ,temporary-file-directory)))
-(setq auto-save-file-name-transforms
-          `((".*" ,temporary-file-directory t)))
-
-;; Flycheck
-(add-hook 'after-init-hook #'global-flycheck-mode)
-
-;; Configure specific modes
-
-;;; General text modes
-(add-hook 'text-mode-hook 'flyspell-mode)
-
-;;; Org mode
-(setq org-log-done t)
-
-;;; Markdown mode
-(autoload 'markdown-mode "markdown-mode"
-    "Major mode for editing Markdown files" t)
-(add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
-(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
-
-;; evil-mode
-
-;;; Activate evil-mode
-(require 'evil)
-(evil-mode t)
-
-;;; Activate surround vi operator
-(require 'evil-surround)
-(global-evil-surround-mode t)
-
-;;; Activate comment vi operator
-(evilnc-default-hotkeys)
-
-;; telephone-line setup
+;;; telephone-line setup
 (require 'telephone-line-config)
 (require 'telephone-line-utils)
 
@@ -163,18 +120,91 @@ Missing packages are installed automatically."
 
 (telephone-line-mode t)
 
-;;; M-x remap
-(define-key evil-normal-state-map (kbd "SPC SPC") 'helm-M-x)
-(define-key evil-visual-state-map (kbd "SPC SPC") 'helm-M-x)
 
-;;; Open splits in frames instead of windows
-(evil-define-command evil-other-frame (&optional file)
-  (interactive "<f>")
-  (find-file-other-frame file))
-(evil-ex-define-cmd "split" 'evil-other-frame)
-(evil-ex-define-cmd "vsplit" 'evil-other-frame)
+;; Magit
+(global-set-key (kbd "C-x g") 'magit-status)
+
+
+;;; Helm
+(require 'helm-config)
+(helm-mode 1)
+(helm-autoresize-mode t)
+(setq helm-buffers-fuzzy-matching t
+      helm-buffers-fuzzy-match    t)
+(setq helm-apropos-fuzzy-match t)
+(define-key helm-map (kbd "C-j") 'helm-next-line)
+(define-key helm-map (kbd "C-k") 'helm-previous-line)
+(define-key helm-map (kbd "C-l")
+  (lambda nil
+    (interactive)
+    (helm-select-nth-action 0)))
+(define-key helm-map (kbd "<escape>") 'helm-keyboard-quit)
+
+(define-key helm-find-files-map (kbd "C-h") 'helm-find-files-up-one-level)
+(define-key helm-find-files-map (kbd "C-l") 'helm-ff-RET)
+
+;; ;; Help keymappings
+(global-set-key (kbd "<f1>") 'helm-apropos)
+(global-set-key (kbd "<f2>") 'describe-key)
+
+;;; Dired
+(require 'dired-x)
+(setq dired-omit-files "^\\..*$")
+(add-hook 'dired-mode-hook (lambda () (dired-omit-mode 1)))
+(put 'dired-find-alternate-file 'disabled nil)
+(global-set-key (kbd "<f10>") 'dired-jump)
+
+;;; Set directory for backups and autosaves
+(setq temporary-file-directory "~/tmp/")
+(setq backup-directory-alist
+          `((".*" . ,temporary-file-directory)))
+(setq auto-save-file-name-transforms
+          `((".*" ,temporary-file-directory t)))
+
+;; Flycheck
+(add-hook 'after-init-hook #'global-flycheck-mode)
+
+;; Configure specific modes
+
+;;; General text modes
+(add-hook 'text-mode-hook 'flyspell-mode)
+
+;;; Org mode
+(setq org-log-done t)
+
+;;; Markdown mode
+(autoload 'markdown-mode "markdown-mode"
+    "Major mode for editing Markdown files" t)
+(add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
+
+;; evil-mode
+
+;;; Activate evil-leader
+(require 'evil-leader)
+(global-evil-leader-mode)
+(evil-leader/set-leader ";")
+(evil-leader/set-key
+ "w" 'save-buffer
+ "k" (lambda nil (interactive) (kill-buffer))
+ "q" 'kill-buffer-and-window
+ "b" 'helm-mini
+ "e" 'helm-find-files
+ ";" 'helm-M-x
+)
+;;; Activate evil-mode
+(require 'evil)
+(evil-mode t)
+
+;;; Activate surround vi operator
+(require 'evil-surround)
+(global-evil-surround-mode t)
+
+;;; Activate comment vi operator
+(evilnc-default-hotkeys)
 
 ;;; Keybindings for ibuffer
+(global-set-key (kbd "C-x b") 'ibuffer)
 (eval-after-load 'ibuffer
     '(progn
 	(evil-set-initial-state 'ibuffer-mode 'normal)
@@ -219,7 +249,7 @@ Missing packages are installed automatically."
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (ethan-wspace ethan-whitespace telephone-line rust-mode markdown-mode linum-relative julia-mode helm haskell-mode flycheck evil-surround evil-nerd-commenter evil elm-mode base16-theme))))
+    (magit ebib auctex ethan-wspace ethan-whitespace telephone-line rust-mode markdown-mode linum-relative julia-mode helm haskell-mode flycheck evil-surround evil-nerd-commenter evil elm-mode base16-theme))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

@@ -29,9 +29,7 @@ bindsym $mod+n exec urxvtc -e newsbeuter
 bindsym $mod+Shift+n exec urxvtc -e podbeuter
 
 # start a web browser
-# bindsym $mod+b exec qutebrowser
-bindsym $mod+b exec urxvtc -e w3m http://www.duckduckgo.com
-bindsym $mod+Shift+b exec --no-startup-id qutebrowser
+bindsym $mod+b exec --no-startup-id qutebrowser
 
 # start file browser
 bindsym $mod+o exec urxvtc -e ranger
